@@ -5,18 +5,18 @@ from django.utils import timezone
 # Create your models here.
 class Hero(models.Model):
     name = models.CharField(max_length=70)
-    image = models.FieldFile()
+    image = models.CharField(max_length=70)
     description = models.TextField()
-    video = models.FieldFile()
+    video = models.CharField(max_length=70)
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name, self.description
 
-class Company(models.models):
+class Company(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    logo = models.FieldFile()
+    logo = models.CharField(max_length=70)
     info = models.TextField()
     date_added = models.DateField(auto_now_add=True)
     
@@ -26,14 +26,14 @@ class Company(models.models):
     class Meta:
         ordering =['name']
 
-class Power_stats():
+class Power_stats(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
-    intelligence = models.PositiveBigIntegerField(max_length=100)
-    strength = models.PositiveBigIntegerField(max_length=100)
-    speed = models.PositiveBigIntegerField(max_length=100)
-    durability = models.PositiveBigIntegerField(max_length=100)
-    power = models.PositiveBigIntegerField(max_length=100)
-    combat = models.PositiveBigIntegerField(max_length=100)
+    intelligence = models.PositiveBigIntegerField()
+    strength = models.PositiveBigIntegerField()
+    speed = models.PositiveBigIntegerField()
+    durability = models.PositiveBigIntegerField()
+    power = models.PositiveBigIntegerField()
+    combat = models.PositiveBigIntegerField()
     date_added = models.DateField(auto_now_add=True)
 
 
