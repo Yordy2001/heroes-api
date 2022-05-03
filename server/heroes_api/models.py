@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date
 from django.utils import timezone
-
+from django.core.validators import MaxValueValidator
 # Create your models here.
 class Hero(models.Model):
     name = models.CharField(max_length=70)
@@ -28,14 +28,13 @@ class Company(models.Model):
 
 class Power_stats(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
-    intelligence = models.PositiveBigIntegerField()
-    strength = models.PositiveBigIntegerField()
-    speed = models.PositiveBigIntegerField()
-    durability = models.PositiveBigIntegerField()
-    power = models.PositiveBigIntegerField()
-    combat = models.PositiveBigIntegerField()
+    intelligence = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    strength = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    speed = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    durability = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    power = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    combat = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
     date_added = models.DateField(auto_now_add=True)
-
 
     def __str__(self) -> str:
         return self.intelligence, self.strength, self.power
