@@ -2,6 +2,7 @@ from django.db import models
 from datetime import date
 from django.utils import timezone
 from django.core.validators import MaxValueValidator
+
 # Create your models here.
 class Hero(models.Model):
     name = models.CharField(max_length=70)
