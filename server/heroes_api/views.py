@@ -1,12 +1,22 @@
-import imp
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest
 from django.http import JsonResponse
-
-from .models import Hero
+from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
+from .models import Hero, Company, Power_stats
 
 # Create your views here.
-def index(request):
-    print(Hero.objects.all())
+def hero_list(request):
+    
+    hero = Hero.objects.all()
+    serializer = HeroSerializer(hero, many=True)
+    return JsonResponse({"data":serializer.data}, safe=False)
 
-    return JsonResponse({"data":list(Hero.objects.all())})
+def company_list(request):
+
+    company = Company.objects.all()
+    serializer = CompanySerializer(company, many=True)
+    return JsonResponse({ "data": serializer.data}, safe=False )
+
+def power_list(request):
+    power_stats = Power_stats.objects.all()
+    serializer = CompanySerializer(power_stats, many=True)
+    return JsonResponse({ "data": serializer.data}, safe=False )

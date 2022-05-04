@@ -20,5 +20,7 @@ from heroes_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hero/', views.index, name='index')
+    path('hero/', views.hero_list, name='index'),
+    path('company/', views.company_list, name='company'),
+    path('powers/', views.power_list, name='power'),
 ]

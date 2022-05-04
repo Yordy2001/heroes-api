@@ -12,8 +12,7 @@ class Hero(models.Model):
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.name, self.description
-
+        return '{} {} '.format(self.name, self.description)
 class Company(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -22,7 +21,7 @@ class Company(models.Model):
     date_added = models.DateField(auto_now_add=True)
     
     def __str__(self) -> str:
-        return self.name
+        return '{} {} {}'.format(self.name, self.hero)
 
     class Meta:
         ordering =['name']
@@ -38,4 +37,4 @@ class Power_stats(models.Model):
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.intelligence, self.strength, self.power
+        return '{} {} {}'.format(self.intelligence, self.strength, self.power)
