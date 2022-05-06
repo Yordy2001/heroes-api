@@ -23,4 +23,6 @@ urlpatterns = [
     path('hero/', views.hero_list, name='index'),
     path('company/', views.company_list, name='company'),
     path('powers/', views.power_list, name='power'),
+    path('hero/<int:id>/', views.get_one_hero, name='onehero'),
+    path('company/<int:id>/', views.get_one_company, name='onecompany'),
 ]

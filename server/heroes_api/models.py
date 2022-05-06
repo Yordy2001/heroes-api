@@ -21,7 +21,7 @@ class Company(models.Model):
     date_added = models.DateField(auto_now_add=True)
     
     def __str__(self) -> str:
-        return '{} {} {}'.format(self.name, self.hero)
+        return '{} {}'.format(self.name, self.hero)
 
     class Meta:
         ordering =['name']
