@@ -2,6 +2,8 @@ from urllib import request
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from operator import attrgetter, itemgetter
+
 from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
 from .models import Hero, Company, Power_stats
 
@@ -15,8 +17,11 @@ def hero_list(request):
         return Response({"data":serializer.data})
 
     elif request.method == "POST":
-        print("========================",request.data) 
-        pass
+        serializer = HeroSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET", "POST"])
 def company_list(request):
@@ -26,6 +31,13 @@ def company_list(request):
         serializer = CompanySerializer(company, many=True)
         return Response({ "data": serializer.data})
 
+    elif request.method == "POST":
+        serializer = HeroSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(["GET", "POST"])
 def power_list(request):
 
@@ -33,6 +45,13 @@ def power_list(request):
         power_stats = Power_stats.objects.all()
         serializer = PowerStatsSerializer(power_stats, many=True)
         return Response({ "data": serializer.data})
+
+    elif request.method == "POST":
+        serializer = HeroSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET"])
 def get_one_hero(request):
