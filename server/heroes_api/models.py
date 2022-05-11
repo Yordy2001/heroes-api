@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from datetime import date
 from django.utils import timezone
@@ -6,7 +7,7 @@ from django.core.validators import MaxValueValidator
 # Create your models here.
 class Hero(models.Model):
     name = models.CharField(max_length=70)
-    image = models.CharField(max_length=70)
+    image = models.ImageField(upload_to='character')
     description = models.TextField()
     video = models.CharField(max_length=70)
     date_added = models.DateField(auto_now_add=True)
@@ -16,7 +17,7 @@ class Hero(models.Model):
 class Company(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    logo = models.CharField(max_length=70)
+    logo = models.ImageField(upload_to='logos')
     info = models.TextField()
     date_added = models.DateField(auto_now_add=True)
     

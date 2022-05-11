@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from heroes_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hero/', views.hero_list, name='index'),
+    path('hero/', views.hero_list, name='hero'),
     path('company/', views.company_list, name='company'),
     path('powers/', views.power_list, name='power'),
-    path('hero/<int:id>/', views.get_one_hero, name='onehero'),
-    path('company/<int:id>/', views.get_one_company, name='onecompany'),
-]
+    path('hero/<int:id>/', views.hero_detail, name='onehero'),
+    path('company/<int:id>/', views.company_detail, name='onecompany'),
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
