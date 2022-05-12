@@ -1,7 +1,5 @@
 from distutils.command.upload import upload
 from django.db import models
-from datetime import date
-from django.utils import timezone
 from django.core.validators import MaxValueValidator
 
 # Create your models here.
@@ -14,6 +12,7 @@ class Hero(models.Model):
 
     def __str__(self):
         return '{} {} '.format(self.name, self.description)
+
 class Company(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -39,3 +38,14 @@ class Power_stats(models.Model):
 
     def __str__(self) -> str:
         return '{} {} {}'.format(self.intelligence, self.strength, self.power)
+
+class User(models.Model):
+    user_name = models.CharField(max_length=70)
+    email = models.CharField(max_length=70)
+    password = models.CharField(max_length=100)
+    permission = models.CharField(max_length=70)
+
+    def __str__(self):
+        return '{} {} '.format(self.name, self.email, self.permission)
+
+

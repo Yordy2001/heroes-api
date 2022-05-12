@@ -4,10 +4,8 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
-from .models import Hero, Company, Power_stats
+from .models.models import Hero, Company, Power_stats
 
-
-# Create your views here.
 
 @api_view(["GET", "POST"])
 @csrf_exempt
@@ -25,7 +23,7 @@ def hero_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @ensure_csrf_cookie
+
 @api_view(["GET", "POST"])
 def company_list(request):
 
@@ -41,7 +39,7 @@ def company_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @ensure_csrf_cookie
+
 @api_view(["GET", "POST"])
 def power_list(request):
 
@@ -81,6 +79,7 @@ def hero_detail(request):
     elif request.method == "DELETE":
         hero.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(["GET", "PUT", "DELETE"])
 def company_detail(request):
