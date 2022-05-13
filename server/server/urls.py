@@ -18,7 +18,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from heroes_api import views
+from heroes_api.views import views
+from heroes_api.views.auth import login, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,8 @@ urlpatterns = [
     path('powers/', views.power_list, name='power'),
     path('hero/<int:id>/', views.hero_detail, name='onehero'),
     path('company/<int:id>/', views.company_detail, name='onecompany'),
+
+    path('auth/login', login, name='login'),
+    path('auth/register', register, name='register'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

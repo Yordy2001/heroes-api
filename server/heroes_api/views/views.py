@@ -3,8 +3,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
-from .models.models import Hero, Company, Power_stats
+from ..serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
+from ..models.models import Hero, Company, Power_stats
 
 
 @api_view(["GET", "POST"])
