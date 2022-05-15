@@ -1,6 +1,4 @@
 from django.db import models
-from datetime import date
-from django.utils import timezone
 from django.core.validators import MaxValueValidator
 
 # Create your models here.
@@ -13,13 +11,14 @@ class Hero(models.Model):
 
     def __str__(self):
         return '{} {} '.format(self.name, self.description)
+
 class Company(models.Model):
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     logo = models.CharField(max_length=70)
     info = models.TextField()
     date_added = models.DateField(auto_now_add=True)
-    
+
     def __str__(self) -> str:
         return '{} {}'.format(self.name, self.hero)
 

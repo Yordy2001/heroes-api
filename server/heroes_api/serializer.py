@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from rest_framework  import serializers
-from .models import Hero, Company, Power_stats
+from .models.heroes_stats import Hero, Company, Power_stats
 
 class HeroSerializer(serializers.ModelSerializer):
     class Meta:

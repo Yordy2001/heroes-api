@@ -2,10 +2,9 @@ from urllib import request
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from operator import attrgetter, itemgetter
 
 from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
-from .models import Hero, Company, Power_stats
+from .models.heroes_stats import Hero, Company, Power_stats
 
 # Create your views here.
 @api_view(["GET", "POST"])
@@ -73,3 +72,4 @@ def get_one_company(request):
         company = Company.objects.filter(id=id)
         serializer =  CompanySerializer(company, many=False)
         return Response( {"data": serializer.data} )
+
