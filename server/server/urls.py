@@ -25,4 +25,6 @@ urlpatterns = [
     path('powers/', views.power_list, name='power'),
     path('hero/<int:id>/', views.get_one_hero, name='onehero'),
     path('company/<int:id>/', views.get_one_company, name='onecompany'),
+
+    path('auth/register', views.register, name='register')
 ]
