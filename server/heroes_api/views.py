@@ -1,4 +1,3 @@
-from urllib import request
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -9,8 +8,6 @@ from .serializer import HeroSerializer, CompanySerializer, PowerStatsSerializer
 from .serializer import UserSerializer
 
 # Create your views here.
-
-
 @api_view(["GET", "POST"])
 def hero_list(request):
 
@@ -84,8 +81,15 @@ def get_one_company(request):
 
 @api_view(['POST'])
 def login(request):
-    pass
+    password = request.data['password']
 
+    try: 
+        user = User.objects.get(email=request.data['email'])
+        serializer = UserSerializer(user, many=False)
+        if password == serializer.data['password']:
+            return Response(status=status.HTTP_200_OK)
+    except Exception as e: 
+        raise e
 
 @api_view(["POST"])
 def register(request):
